@@ -9,18 +9,18 @@ const scenes = [...document.querySelectorAll('.scene')];
 const sceneData = [
   {
     id: 'closet',
-    hint: 'Catch her with the yarn!',
+    hint: 'Tap the tangled yarn!',
     complete: 'yarn_rescued'
   },
   {
     id: 'dad',
-    hint: 'Ring the mouse toy!',
+    hint: "Save Dad's head!",
     complete: 'dad_distracted'
   },
   {
-    id: 'stool',
-    hint: 'Move your foot!',
-    complete: 'stool_returned'
+    id: 'teddy',
+    hint: 'Rescue the teddy!',
+    complete: 'teddy_rescued'
   }
 ];
 
@@ -54,7 +54,9 @@ function completeScene(action) {
   if (locked) return;
   locked = true;
   markFirstInteraction();
+  if (action === 'tap_tangled_yarn') playMeow();
   if (action === 'tap_electric_mouse') playToyBell();
+  if (action === 'tap_teddy') playRescueChime();
 
   const activeScene = scenes[currentScene];
   const caption = activeScene.querySelector('.caption');
@@ -102,7 +104,7 @@ function showEnding() {
   const ending = document.querySelector('[data-scene="ending"]');
   ending.classList.add('is-active');
   ending.querySelector('.caption').classList.add('show');
-  hint.textContent = 'She missed you too.';
+  hint.textContent = 'He missed you too.';
   progressDots.forEach((dot) => {
     dot.classList.add('is-done');
     dot.classList.remove('is-active');
@@ -165,10 +167,83 @@ function playToyBell() {
   setTimeout(() => audio.close(), 700);
 }
 
-document.getElementById('closetCat').addEventListener('pointerdown', () => completeScene('tap_cat'));
+function playMeow() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  const audio = new AudioContext();
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(620, audio.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(360, audio.currentTime + 0.22);
+  osc.frequency.exponentialRampToValueAtTime(520, audio.currentTime + 0.46);
+  gain.gain.setValueAtTime(0.001, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.16, audio.currentTime + 0.04);
+  gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.58);
+  osc.connect(gain);
+  gain.connect(audio.destination);
+  osc.start();
+  osc.stop(audio.currentTime + 0.62);
+  setTimeout(() => audio.close(), 760);
+}
+
+function playCuteMeow() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  const audio = new AudioContext();
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(720, audio.currentTime);
+  osc.frequency.exponentialRampToValueAtTime(520, audio.currentTime + 0.18);
+  osc.frequency.exponentialRampToValueAtTime(760, audio.currentTime + 0.36);
+  gain.gain.setValueAtTime(0.001, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.1, audio.currentTime + 0.03);
+  gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.46);
+  osc.connect(gain);
+  gain.connect(audio.destination);
+  osc.start();
+  osc.stop(audio.currentTime + 0.5);
+  setTimeout(() => audio.close(), 650);
+}
+
+function playRescueChime() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContext) return;
+
+  const audio = new AudioContext();
+  const gain = audio.createGain();
+  gain.gain.setValueAtTime(0.001, audio.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.11, audio.currentTime + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.48);
+  gain.connect(audio.destination);
+
+  [660, 990, 1320].forEach((frequency, index) => {
+    const osc = audio.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(frequency, audio.currentTime + index * 0.08);
+    osc.connect(gain);
+    osc.start(audio.currentTime + index * 0.08);
+    osc.stop(audio.currentTime + 0.26 + index * 0.08);
+  });
+
+  setTimeout(() => audio.close(), 650);
+}
+
+document.getElementById('yarnMess').addEventListener('pointerdown', () => completeScene('tap_tangled_yarn'));
 document.getElementById('toy').addEventListener('pointerdown', () => completeScene('tap_electric_mouse'));
-document.getElementById('foot').addEventListener('pointerdown', () => completeScene('tap_foot'));
-document.getElementById('stoolCat').addEventListener('pointerdown', () => completeScene('tap_stool_cat'));
+document.getElementById('teddy').addEventListener('pointerdown', () => completeScene('tap_teddy'));
+document.getElementById('endingCat').addEventListener('pointerdown', () => {
+  const endingCat = document.getElementById('endingCat');
+  playCuteMeow();
+  vibrate(18);
+  endingCat.classList.remove('is-meowing');
+  void endingCat.offsetWidth;
+  endingCat.classList.add('is-meowing');
+  track('ending_cat_pet');
+});
 
 cta.addEventListener('pointerdown', () => {
   track('cta_click', { target: 'store_redirect_placeholder' });

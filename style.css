@@ -277,9 +277,9 @@ button {
   height: 180px;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 18%, #fff 0 9px, transparent 10px),
-    radial-gradient(circle at 50% 42%, #ef4444 0 15px, transparent 16px),
-    radial-gradient(circle at 50% 66%, #ef4444 0 12px, transparent 13px);
+    linear-gradient(100deg, transparent 0 22%, #ef4444 23% 28%, transparent 29% 100%),
+    linear-gradient(78deg, transparent 0 48%, #dc2626 49% 54%, transparent 55% 100%),
+    linear-gradient(118deg, transparent 0 65%, #b91c1c 66% 71%, transparent 72% 100%);
   opacity: 0.88;
   filter: drop-shadow(0 7px 5px rgba(38,49,61,0.18));
 }
@@ -344,6 +344,77 @@ button {
   width: 34px;
   height: 4px;
   transform: rotate(31deg);
+}
+
+.yarn-mess {
+  position: absolute;
+  left: 68px;
+  bottom: 168px;
+  z-index: 18;
+  width: 302px;
+  height: 208px;
+  padding: 0;
+  background: transparent;
+}
+
+.yarn-thread {
+  position: absolute;
+  border: 5px solid #dc2626;
+  border-color: #dc2626 transparent transparent #dc2626;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.thread-one {
+  left: 10px;
+  top: 86px;
+  width: 272px;
+  height: 82px;
+  transform: rotate(8deg);
+}
+
+.thread-two {
+  left: 42px;
+  top: 36px;
+  width: 228px;
+  height: 144px;
+  border-color: transparent #ef4444 #ef4444 transparent;
+  transform: rotate(-18deg);
+}
+
+.thread-three {
+  left: 76px;
+  top: 56px;
+  width: 192px;
+  height: 132px;
+  border-color: #b91c1c #b91c1c transparent transparent;
+  transform: rotate(36deg);
+}
+
+.floor-yarn {
+  left: 126px;
+  top: 82px;
+  animation: yarnPulse 0.7s infinite alternate ease-in-out;
+}
+
+.meow-bubble {
+  position: absolute;
+  left: 50%;
+  top: -38px;
+  z-index: 6;
+  min-width: 78px;
+  transform: translateX(-50%) scale(0);
+  padding: 7px 10px;
+  border: 4px solid #fff;
+  border-radius: 999px;
+  background: #26313d;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  box-shadow: 0 7px 0 rgba(0,0,0,0.18);
+  pointer-events: none;
 }
 
 .cabinet {
@@ -455,8 +526,8 @@ button {
 
 .danger-lines {
   position: absolute;
-  right: 136px;
-  bottom: 417px;
+  left: 116px;
+  bottom: 382px;
   z-index: 18;
   width: 84px;
   height: 58px;
@@ -580,60 +651,153 @@ button {
   animation: ringPing 0.8s infinite ease-out;
 }
 
-.stool {
+.chair {
   position: absolute;
   left: 50%;
-  bottom: 156px;
-  width: 168px;
-  height: 76px;
+  bottom: 150px;
+  width: 190px;
+  height: 84px;
   transform: translateX(-50%);
   border: 7px solid #74482d;
-  border-radius: 22px;
-  background: linear-gradient(180deg, #ffd166, #d98a3f);
+  border-radius: 24px 24px 18px 18px;
+  background: linear-gradient(180deg, #86d8cf, #3ca59b);
   box-shadow: 0 13px 0 #74482d, 0 22px 28px var(--shadow);
 }
 
-.stool::before,
-.stool::after {
+.chair::before,
+.chair::after {
   content: "";
   position: absolute;
-  top: 64px;
-  width: 18px;
-  height: 96px;
-  border-radius: 999px;
   background: #74482d;
 }
 
-.stool::before { left: 26px; }
-.stool::after { right: 26px; }
-
-.foot {
-  position: absolute;
-  right: 28px;
-  bottom: 196px;
-  z-index: 12;
-  width: 132px;
-  height: 62px;
-  border: 6px solid #334155;
-  border-radius: 42px 50px 28px 32px;
-  background: linear-gradient(180deg, #e8edf4, #b9c3d4);
-  box-shadow: 0 9px 0 rgba(0,0,0,0.14), 0 16px 18px var(--shadow);
-  transform: rotate(8deg);
-  animation: footNudge 1s infinite alternate ease-in-out;
+.chair::before {
+  left: 16px;
+  right: 16px;
+  top: -78px;
+  height: 86px;
+  border: 7px solid #74482d;
+  border-radius: 26px 26px 12px 12px;
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(255,255,255,0.22) 0 46px, transparent 47px),
+    linear-gradient(180deg, #8ee3db, #58bfb6);
 }
 
-.foot::after {
+.chair::after {
+  left: 36px;
+  right: 36px;
+  bottom: -88px;
+  height: 88px;
+  background:
+    linear-gradient(90deg, #74482d 0 18px, transparent 18px calc(100% - 18px), #74482d calc(100% - 18px));
+}
+
+.teddy {
+  position: absolute;
+  left: 50%;
+  bottom: 202px;
+  z-index: 17;
+  width: 116px;
+  height: 118px;
+  transform: translateX(-50%) rotate(-4deg);
+  border: 5px solid #6b4a35;
+  border-radius: 48px 48px 42px 42px;
+  background:
+    radial-gradient(circle at 38% 44%, #26313d 0 4px, transparent 5px),
+    radial-gradient(circle at 62% 44%, #26313d 0 4px, transparent 5px),
+    radial-gradient(ellipse at 50% 62%, #f3d1a5 0 20px, transparent 21px),
+    linear-gradient(180deg, #c28a5b, #9a6847);
+  box-shadow: 0 9px 0 rgba(0,0,0,0.14), 0 16px 22px var(--shadow);
+  animation: teddyWobble 0.58s infinite alternate ease-in-out;
+}
+
+.teddy::before,
+.teddy::after {
   content: "";
   position: absolute;
-  right: -13px;
-  bottom: 13px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #e8edf4;
-  border: 5px solid #334155;
-  border-left: 0;
+  pointer-events: none;
 }
+
+.teddy::before {
+  left: 50%;
+  top: 69px;
+  width: 14px;
+  height: 10px;
+  border-radius: 50%;
+  background: #26313d;
+  transform: translateX(-50%);
+}
+
+.teddy::after {
+  left: 50%;
+  top: 82px;
+  width: 24px;
+  height: 10px;
+  border-bottom: 4px solid #26313d;
+  border-radius: 0 0 16px 16px;
+  transform: translateX(-50%);
+}
+
+.teddy-ear,
+.teddy-arm {
+  position: absolute;
+  border: 5px solid #6b4a35;
+  background: #b98155;
+  pointer-events: none;
+}
+
+.teddy-ear {
+  top: -18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.teddy-ear.left { left: 10px; }
+.teddy-ear.right { right: 10px; }
+
+.teddy-arm {
+  top: 48px;
+  width: 36px;
+  height: 54px;
+  border-radius: 999px;
+}
+
+.teddy-arm.left {
+  left: -22px;
+  transform: rotate(26deg);
+}
+
+.teddy-arm.right {
+  right: -22px;
+  transform: rotate(-26deg);
+}
+
+.teddy-face {
+  position: absolute;
+  left: 50%;
+  top: 56px;
+  width: 48px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f3d1a5;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.teddy-face::before,
+.teddy-face::after {
+  content: "";
+  position: absolute;
+  top: -23px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #26313d;
+}
+
+.teddy-face::before { left: 9px; }
+.teddy-face::after { right: 9px; }
 
 .sofa {
   position: absolute;
@@ -874,39 +1038,42 @@ button {
 .closet-cat {
   left: 150px;
   bottom: 245px;
+  pointer-events: none;
   animation: catSwagger 1.15s infinite ease-in-out;
 }
 
 .dad-cat {
-  right: 34px;
-  bottom: 438px;
-  animation: catKnock 0.62s infinite alternate ease-in-out;
+  left: 116px;
+  bottom: 356px;
+  z-index: 19;
+  width: 122px;
+  height: 110px;
+  animation: none;
 }
 
-.dad-cat .knock-paw {
+.dad-cat .cat {
+  transform: scale(0.78) rotate(-4deg);
+  transform-origin: 50% 100%;
+}
+
+.chair-cat {
+  right: 48px;
+  bottom: 226px;
+  z-index: 18;
+  animation: catPounce 0.66s infinite alternate ease-in-out;
+}
+
+.chair-cat .swat-paw {
   position: absolute;
-  left: -10px;
+  left: 4px;
   top: 78px;
-  width: 62px;
-  height: 19px;
+  width: 66px;
+  height: 20px;
   border: 5px solid var(--ink);
   border-radius: 999px;
   background: var(--cat-cream);
-  transform-origin: 80% 50%;
-  animation: pawBonk 0.62s infinite alternate ease-in-out;
-}
-
-.closet-cat .stolen-yarn {
-  left: -5px;
-  bottom: 18px;
-  z-index: 4;
-  animation: yarnBoast 1.15s infinite ease-in-out;
-}
-
-.stool-cat {
-  left: 61px;
-  bottom: 222px;
-  animation: catPounce 0.66s infinite alternate ease-in-out;
+  transform-origin: 85% 50%;
+  animation: teddySwat 0.46s infinite alternate ease-in-out;
 }
 
 .ending-cat {
@@ -914,6 +1081,7 @@ button {
   bottom: 212px;
   width: 166px;
   height: 146px;
+  border: 0;
   animation: cuddle 0.88s infinite alternate ease-in-out;
 }
 
@@ -968,15 +1136,28 @@ button {
 }
 
 .is-cleared .closet-cat {
-  animation: caughtCat 0.56s ease-out forwards;
+  animation: caughtCat 0.68s ease-in forwards;
+}
+
+.is-cleared .yarn-mess {
+  animation: rescueYarn 0.52s ease-out forwards;
+  pointer-events: none;
+}
+
+.is-cleared .meow-bubble {
+  animation: meowPop 0.5s cubic-bezier(.2,1.55,.4,1) forwards;
+}
+
+.ending-cat.is-meowing .meow-bubble {
+  animation: meowPop 0.5s cubic-bezier(.2,1.55,.4,1) forwards;
 }
 
 .is-cleared .dad-cat {
   animation: jumpToToy 0.58s ease-in forwards;
 }
 
-.is-cleared .stool-cat {
-  animation: claimStool 0.62s ease-in forwards;
+.is-cleared .chair-cat {
+  animation: regretHop 0.62s ease-in forwards;
 }
 
 .is-cleared .fur-collar {
@@ -992,8 +1173,8 @@ button {
   animation: tapPop 0.4s ease-out forwards;
 }
 
-.is-cleared .foot {
-  animation: moveFoot 0.58s ease-in forwards;
+.is-cleared .teddy {
+  animation: rescueTeddy 0.58s ease-out forwards;
   pointer-events: none;
 }
 
@@ -1036,6 +1217,17 @@ button {
   100% { transform: translateY(2px) rotate(12deg); }
 }
 
+@keyframes yarnPulse {
+  from { transform: scale(1) rotate(-6deg); }
+  to { transform: scale(1.08) rotate(7deg); }
+}
+
+@keyframes meowPop {
+  0% { transform: translateX(-50%) translateY(8px) scale(0); opacity: 0; }
+  72% { transform: translateX(-50%) translateY(-4px) scale(1.12); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
+}
+
 @keyframes pawBonk {
   from { transform: rotate(-7deg) translateX(0); }
   to { transform: rotate(-30deg) translateX(-18px); }
@@ -1044,6 +1236,16 @@ button {
 @keyframes catPounce {
   from { transform: translateY(0) rotate(0); }
   to { transform: translateY(-10px) rotate(-6deg); }
+}
+
+@keyframes teddySwat {
+  from { transform: rotate(2deg) translateX(0); }
+  to { transform: rotate(28deg) translateX(-26px); }
+}
+
+@keyframes teddyWobble {
+  from { transform: translateX(-50%) rotate(-6deg); }
+  to { transform: translateX(-50%) rotate(7deg); }
 }
 
 @keyframes mouseScoot {
@@ -1066,23 +1268,28 @@ button {
   to { transform: scale(1.08); opacity: 1; }
 }
 
-@keyframes footNudge {
-  from { transform: translateY(0) rotate(8deg); }
-  to { transform: translateY(-5px) rotate(5deg); }
-}
-
 @keyframes caughtCat {
   0% { transform: translateX(10px) translateY(-4px) rotate(5deg); }
-  45% { transform: translateX(0) translateY(-14px) rotate(0) scale(1.05); }
-  100% { transform: translateX(22px) translateY(18px) rotate(10deg) scale(0.94); opacity: 0; }
+  26% { transform: translateX(-4px) translateY(-26px) rotate(-8deg) scale(1.08); }
+  100% { transform: translateX(220px) translateY(16px) rotate(22deg) scale(0.9); opacity: 0; }
+}
+
+@keyframes rescueYarn {
+  to { transform: translateY(18px) scale(0.78); opacity: 0; }
 }
 
 @keyframes jumpToToy {
-  to { transform: translateX(-184px) translateY(296px) rotate(-18deg) scale(0.96); }
+  to { transform: translateX(-78px) translateY(286px) rotate(-18deg) scale(0.9); opacity: 0.9; }
 }
 
-@keyframes claimStool {
-  to { transform: translateX(118px) translateY(38px) rotate(0) scale(1.08); }
+@keyframes regretHop {
+  to { transform: translateX(92px) translateY(42px) rotate(14deg) scale(0.92); opacity: 0; }
+}
+
+@keyframes rescueTeddy {
+  0% { transform: translateX(-50%) rotate(-5deg) scale(1); }
+  45% { transform: translateX(-50%) translateY(-28px) rotate(0) scale(1.08); }
+  100% { transform: translateX(-50%) translateY(88px) rotate(10deg) scale(0.76); opacity: 0; }
 }
 
 @keyframes dropCollar {
@@ -1093,10 +1300,6 @@ button {
   0% { opacity: 0; transform: scale(0.4); }
   40% { opacity: 1; transform: scale(1.25); }
   100% { opacity: 0; transform: scale(1.8); }
-}
-
-@keyframes moveFoot {
-  to { transform: translateX(190px) rotate(18deg); opacity: 0; }
 }
 
 @keyframes cuddle {

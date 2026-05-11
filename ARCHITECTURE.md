@@ -12,7 +12,7 @@ The playable flow is configured in `script.js` through `sceneData`.
 
 1. `closet`: catch the cat and rescue the stolen yarn.
 2. `dad`: ring the electric mouse toy to distract the cat.
-3. `stool`: move the foot so the cat can reclaim the stool.
+3. `teddy`: rescue the plush bear from the cat's sleeping chair.
 4. `ending`: show the payoff and CTA.
 
 Each interactive scene uses the same completion path:
