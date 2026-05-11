@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Moo Cat Mischief - Playable Ad Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="phone" id="game" aria-label="Moo Cat Mischief playable ad prototype">
+    <div class="room">
+      <div class="wall-art"></div>
+      <div class="window"></div>
+      <div class="floor"></div>
+
+      <header class="hud">
+        <div class="title">Moo Cat Mischief</div>
+        <div class="hint" id="hint">Catch her with the yarn!</div>
+        <div class="progress" id="progress" aria-label="Scene progress">
+          <span class="dot is-active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </header>
+
+      <!-- Scene 1: catch the cat and rescue the stolen yarn. -->
+      <section class="scene is-active" data-scene="closet">
+        <div class="wardrobe"></div>
+        <div class="fur-collar"></div>
+        <button class="cat-button closet-cat" id="closetCat" aria-label="Catch the cat with the fur collar">
+          <span class="cat">
+            <span class="tail"></span>
+            <span class="cat-body"></span>
+            <span class="cat-head">
+              <span class="eye left"></span>
+              <span class="eye right"></span>
+              <span class="nose"></span>
+              <span class="mouth"></span>
+            </span>
+          </span>
+          <span class="yarn-ball stolen-yarn" aria-hidden="true"></span>
+        </button>
+        <div class="caption">Yarn rescued!</div>
+      </section>
+
+      <!-- Scene 2: ring the electric mouse toy to save Dad. -->
+      <section class="scene" data-scene="dad">
+        <div class="tv" aria-hidden="true"></div>
+        <div class="dad"></div>
+        <div class="cabinet"></div>
+        <span class="danger-lines" aria-hidden="true"></span>
+        <span class="tap-mark"></span>
+        <button class="cat-button dad-cat" id="dadCat" aria-label="Mischievous cat on the cabinet">
+          <span class="cat">
+            <span class="tail"></span>
+            <span class="cat-body"></span>
+            <span class="knock-paw"></span>
+            <span class="cat-head">
+              <span class="eye left"></span>
+              <span class="eye right"></span>
+              <span class="nose"></span>
+              <span class="mouth"></span>
+            </span>
+          </span>
+        </button>
+        <button class="toy" id="toy" aria-label="Ring the electric mouse toy">
+          <span class="mouse-ear"></span>
+          <span class="mouse-wheel"></span>
+          <span class="ring"></span>
+        </button>
+        <div class="caption">Dad is safe... for now.</div>
+      </section>
+
+      <!-- Scene 3: move the foot so the cat can reclaim the stool. -->
+      <section class="scene" data-scene="stool">
+        <div class="stool"></div>
+        <button class="foot" id="foot" aria-label="Move your foot away from the stool"></button>
+        <button class="cat-button stool-cat" id="stoolCat" aria-label="Cat wants her stool back">
+          <span class="cat">
+            <span class="tail"></span>
+            <span class="cat-body"></span>
+            <span class="cat-head">
+              <span class="eye left"></span>
+              <span class="eye right"></span>
+              <span class="nose"></span>
+              <span class="mouth"></span>
+            </span>
+          </span>
+        </button>
+        <div class="caption">Her favorite spot is back.</div>
+      </section>
+
+      <!-- Final payoff and CTA. -->
+      <section class="scene" data-scene="ending">
+        <div class="sofa"></div>
+        <div class="hand"></div>
+        <div class="cat-wrap ending-cat" aria-label="Happy cow cat cuddling">
+          <span class="cat">
+            <span class="tail"></span>
+            <span class="cat-body"></span>
+            <span class="cat-head">
+              <span class="eye left"></span>
+              <span class="eye right"></span>
+              <span class="nose"></span>
+              <span class="mouth"></span>
+            </span>
+          </span>
+        </div>
+        <div class="caption">She missed you too.</div>
+      </section>
+
+      <button class="cta" id="cta">Play More</button>
+      <div class="sparkles" id="sparkles"></div>
+    </div>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
+
