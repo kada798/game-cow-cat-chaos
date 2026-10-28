@@ -1,0 +1,6 @@
+{
+  "name": "moo-cat-art-build",
+  "private": true,
+  "scripts": { "build": "node build-assets.cjs" },
+  "dependencies": { "sharp": "0.35.5" }
+}

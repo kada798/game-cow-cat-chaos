@@ -12,6 +12,9 @@
   --cat-fur: #f4f1df;
   --cat-pink: #f4a6b7;
   --cat-amber: #c99a4d;
+  --design-width: 390px;
+  --design-height: 844px;
+  --scene-min-height: 700px;
 }
 
 /* Base frame */
@@ -23,16 +26,38 @@
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: #17202b;
+  background: #27292b;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--ink);
 }
 
-body {
-  display: grid;
-  place-items: center;
+.viewport {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.game-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  visibility: hidden;
+}
+
+.game-frame.is-ready {
+  visibility: visible;
 }
 
 button {
@@ -42,18 +67,43 @@ button {
   touch-action: manipulation;
 }
 
-.phone {
-  position: relative;
-  width: min(100vw, 430px);
-  height: min(100vh, 820px);
-  aspect-ratio: 9 / 16;
+.game-stage {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: var(--world-width, 100%);
+  height: var(--world-height, 100%);
+  transform: scale(var(--stage-scale, 1));
+  transform-origin: top left;
   overflow: hidden;
-  border-radius: 28px;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0) 22%),
     linear-gradient(180deg, #9bd6ff 0 36%, #ffe8ad 36% 100%);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
   user-select: none;
+}
+
+/* UI stays in screen pixels; only scene coordinates are scaled. */
+.ui-layer {
+  position: absolute;
+  inset: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+  z-index: 30;
+  container-type: size;
+  pointer-events: none;
+}
+
+.scene button > .hit-area {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: max(100%, var(--min-hit-size, 44px));
+  height: max(100%, var(--min-hit-size, 44px));
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
 }
 
 .room {
@@ -65,7 +115,7 @@ button {
 .room::before {
   content: "";
   position: absolute;
-  top: 82px;
+  top: 144px;
   right: -10px;
   width: 82px;
   height: 238px;
@@ -80,7 +130,7 @@ button {
 
 .wall-art {
   position: absolute;
-  top: 98px;
+  top: 164px;
   left: 18px;
   width: 82px;
   height: 56px;
@@ -93,7 +143,7 @@ button {
 
 .window {
   position: absolute;
-  top: 96px;
+  top: 160px;
   right: 28px;
   width: 116px;
   height: 106px;
@@ -129,11 +179,10 @@ button {
 
 .floor {
   position: absolute;
-  left: -10%;
-  right: -10%;
-  bottom: -38px;
-  height: 39%;
-  border-radius: 50% 50% 0 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 340px;
   background:
     repeating-linear-gradient(90deg, rgba(90,52,28,0.13) 0 3px, transparent 3px 54px),
     repeating-linear-gradient(0deg, rgba(255,255,255,0.13) 0 2px, transparent 2px 34px),
@@ -143,40 +192,43 @@ button {
 
 .hud {
   position: absolute;
-  top: 18px;
-  left: 18px;
-  right: 18px;
+  top: clamp(8px, calc(18px * var(--stage-scale, 1)), 22px);
+  left: 12px;
+  right: 12px;
   z-index: 30;
   display: grid;
-  gap: 10px;
+  gap: 8px;
   justify-items: center;
   pointer-events: none;
 }
 
 .title {
   max-width: 100%;
-  padding: 9px 16px;
-  border: 4px solid #fff;
+  padding: 8px 12px;
+  border: 3px solid #fff;
   border-radius: 999px;
   background: #26313d;
   color: #fff;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.1;
   box-shadow: 0 7px 0 rgba(0, 0, 0, 0.16);
   text-align: center;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .hint {
+  max-width: 100%;
   min-height: 32px;
   padding: 7px 15px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.84);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
   box-shadow: 0 7px 16px var(--shadow);
-  animation: hintPulse 0.8s infinite alternate ease-in-out;
 }
 
 .progress {
@@ -200,7 +252,11 @@ button {
 
 .scene {
   position: absolute;
-  inset: 0;
+  left: var(--scene-center-x, 50%);
+  bottom: var(--scene-bottom, 0px);
+  width: var(--design-width);
+  height: var(--design-height);
+  transform: translateX(-50%);
   display: none;
 }
 
@@ -211,9 +267,9 @@ button {
 .caption {
   position: absolute;
   left: 50%;
-  bottom: 114px;
+  bottom: 96px;
   z-index: 25;
-  width: min(84%, 320px);
+  width: min(calc(100% - 24px), 320px);
   transform: translateX(-50%) scale(0);
   padding: 12px 14px;
   border: 4px solid #fff;
@@ -221,9 +277,10 @@ button {
   background: #26313d;
   color: #fff;
   text-align: center;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 900;
   line-height: 1.05;
+  overflow-wrap: anywhere;
   box-shadow: 0 10px 0 rgba(0,0,0,0.18), 0 18px 24px var(--shadow);
   opacity: 0;
   pointer-events: none;
@@ -850,6 +907,10 @@ button {
 }
 
 /* Reusable cat rig */
+.cat-wrap {
+  pointer-events: none;
+}
+
 .cat-button,
 .cat-wrap {
   position: absolute;
@@ -1093,25 +1154,29 @@ button {
 .cta {
   position: absolute;
   left: 50%;
-  bottom: 28px;
+  bottom: 16px;
   z-index: 40;
-  min-width: 214px;
+  width: min(calc(100% - 24px), 240px);
+  min-height: 48px;
   transform: translateX(-50%) scale(0);
   opacity: 0;
-  padding: 15px 22px;
+  padding: 10px 14px;
   border: 5px solid #fff;
   border-radius: 999px;
   background: linear-gradient(180deg, #fff27a, #ff9f1c);
   color: #5a2a00;
-  font-size: 20px;
+  font-size: 18px;
+  overflow-wrap: anywhere;
   font-weight: 900;
   box-shadow: 0 8px 0 #b95f12, 0 16px 26px rgba(0,0,0,0.24);
   pointer-events: none;
+  visibility: hidden;
 }
 
 .cta.show {
   animation: ctaIn 0.48s cubic-bezier(.2,1.55,.4,1) forwards, ctaPulse 0.85s 0.6s infinite alternate ease-in-out;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .sparkles {
@@ -1316,17 +1381,67 @@ button {
   to { transform: translateX(-50%) scale(1.06); }
 }
 
-@media (max-height: 680px) {
-  .phone {
-    border-radius: 0;
+@container (max-height: 440px) {
+  .hud {
+    top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 12px;
   }
 
   .title {
-    font-size: 20px;
+    padding: 5px 10px;
+    font-size: 17px;
   }
 
   .hint {
-    font-size: 15px;
+    min-height: 28px;
+    padding: 5px 12px;
+    font-size: 14px;
+  }
+
+  .caption {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}
+
+@container (max-width: 280px) {
+  .title {
+    font-size: 17px;
+  }
+
+  .hint {
+    font-size: 14px;
+  }
+}
+
+@container (max-width: 220px) {
+  .hud {
+    gap: 4px;
+  }
+
+  .title {
+    padding: 5px 8px;
+    font-size: 14px;
+  }
+
+  .hint {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .caption {
+    bottom: 80px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .cta {
+    font-size: 14px;
+    padding: 8px;
   }
 }
 

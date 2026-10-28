@@ -1,131 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Moo Cat Mischief - Playable Ad Prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>游戏：奶牛猫大作战 | Moo Cat Mayhem</title>
+  <meta name="application-name" content="Moo Cat Mayhem" />
+  <meta name="description" content="和调皮的奶牛猫希小乐斗智斗勇，找到隐藏玩具，阻止它拆家和偷袭。" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ambush.css" />
+  <link rel="stylesheet" href="yarn.css" />
+  <link rel="stylesheet" href="dad.css" />
+  <link rel="stylesheet" href="teddy.css" />
+  <link rel="stylesheet" href="story.css" />
+  <link rel="preload" as="image" href="assets/art-v1/backgrounds/room.webp" />
 </head>
 <body>
-  <main class="phone" id="game" aria-label="Moo Cat Mischief playable ad prototype">
-    <div class="room">
-      <div class="wall-art"></div>
-      <div class="window"></div>
-      <div class="floor"></div>
+  <main class="viewport" id="viewport" aria-label="奶牛猫大作战 / Moo Cat Mayhem">
+    <div class="game-frame" id="gameFrame">
+      <div class="game-stage" id="game">
+        <div class="room">
+          <div class="wall-art"></div>
+          <div class="window"></div>
+          <div class="floor"></div>
 
-      <header class="hud">
-        <div class="title">Moo Cat Mischief</div>
-        <div class="hint" id="hint">Tap the tangled yarn!</div>
-        <div class="progress" id="progress" aria-label="Scene progress">
-          <span class="dot is-active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+          <!-- Playable hand-drawn scene: peek, crouch, pounce, and retreat. -->
+          <section class="scene ambush-scene is-active" data-scene="ambush" data-state="loading" aria-label="小猫在沙发底下埋伏">
+            <div class="ambush-rig">
+              <img class="ambush-sofa ambush-sofa-back" src="assets/art-v1/props/sofa-back.png" alt="" draggable="false" />
+              <div class="ambush-cavity" aria-hidden="true"></div>
+              <div class="ambush-hidden-cat" aria-hidden="true">
+                <img class="ambush-sprite ambush-peek" src="assets/art-v1/cats/cat-under-sofa.png" alt="" draggable="false" />
+                <img class="ambush-sprite ambush-crouch" src="assets/art-v1/cats/cat-under-sofa.png" alt="" draggable="false" />
+              </div>
+              <div class="ambush-runner" data-pose="leap" aria-hidden="true">
+                <span class="ambush-cat-shadow"></span>
+                <img class="ambush-sprite ambush-leap" src="assets/art-v1/cats/cat-pounce.png" alt="" draggable="false" />
+                <img class="ambush-sprite ambush-ground" src="assets/art-v1/cats/cat-crouch.png" alt="" draggable="false" />
+              </div>
+              <img class="ambush-sofa ambush-sofa-front" src="assets/art-v1/props/sofa-front.png" alt="" draggable="false" />
+              <img class="ambush-girl" src="assets/art-v1/characters/girl-reading.png" alt="扎着双马尾的小女孩坐在沙发上，双手捧书，低头阅读" draggable="false" />
+              <span class="ambush-foot-shadow" aria-hidden="true"></span>
+              <span class="ambush-ball-shadow" aria-hidden="true"></span>
+              <div class="ambush-ball-motion" data-ball="hand">
+                <button class="ambush-football" id="ambushBall" type="button" aria-label="放下藏在书边的小足球，引小猫出来扑球" disabled>
+                  <span class="hit-area" aria-hidden="true"></span>
+                  <img src="assets/art-v1/props/soccer-ball.png" alt="女孩悄悄藏在手边的黑白小足球" draggable="false" />
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Distract the cat before rescuing the scattered yarn. -->
+          <section class="scene yarn-scene" data-scene="yarn" data-state="loading" aria-label="用羽毛逗猫棒吸引小猫，拯救散落的毛线团">
+            <div class="yarn-rig">
+              <img class="yarn-sofa" src="assets/art-v1/props/sofa-complete.png" alt="" draggable="false" />
+              <div class="yarn-scatter" aria-hidden="true">
+                <img class="yarn-tangle" src="assets/art-v1/props/yarn-strands.png" alt="" draggable="false" />
+                <svg class="yarn-thread-link" viewBox="0 0 390 844" fill="none"><path id="yarnPullThread" d="M177 684 Q167 701 160 682" /></svg>
+              </div>
+              <button class="yarn-mess-target" id="yarnMess" type="button" aria-label="试着拿回小猫爪边的毛线团" disabled>
+                <span class="hit-area" aria-hidden="true"></span>
+                <span class="yarn-ball-roll"><img class="yarn-loose-ball" src="assets/art-v1/props/yarn-tidy.png" alt="小猫正在拉扯的小毛线球" draggable="false" /></span>
+              </button>
+              <img class="yarn-tidy" src="assets/art-v1/props/yarn-tidy.png" alt="已经收好的毛线团" draggable="false" />
+              <div class="yarn-cat" data-pose="play" aria-hidden="true">
+                <span class="yarn-cat-shadow"></span>
+                <img class="yarn-cat-sprite yarn-play" src="assets/art-v1/cats/cat-yarn-play.png" alt="" draggable="false" />
+                <img class="yarn-cat-sprite yarn-tug" src="assets/art-v1/cats/cat-yarn-tug.png" alt="" draggable="false" />
+                <img class="yarn-cat-sprite yarn-alert" src="assets/art-v1/cats/cat-crouch.png" alt="" draggable="false" />
+                <img class="yarn-cat-sprite yarn-walk" src="assets/art-v1/cats/cat-walk.png" alt="" draggable="false" />
+                <img class="yarn-cat-sprite yarn-pounce" src="assets/art-v1/cats/cat-crouch.png" alt="" draggable="false" />
+              </div>
+              <button class="yarn-feather" id="featherToy" type="button" aria-label="拿起带铃铛的羽毛逗猫棒，吸引小猫注意" disabled>
+                <span class="hit-area" aria-hidden="true"></span>
+                <span class="yarn-feather-crop"><img src="assets/art-v1/props/feather-bell.png" alt="藏在画面边缘的羽毛逗猫棒" draggable="false" /></span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Find the hidden wind-up mouse before Xiaole taps Dad again. -->
+          <section class="scene dad-scene" data-scene="dad" data-state="loading" aria-label="找到藏在电视柜下的玩具老鼠，引开偷敲爸爸光头的希小乐">
+            <div class="dad-rig">
+              <img class="dad-sofa dad-sofa-back" src="assets/art-v1/props/sofa-back.png" alt="" draggable="false" />
+              <div class="dad-perched-cat" data-pose="stand" aria-hidden="true">
+                <img class="dad-cat-sprite dad-cat-stand" src="assets/art-v1/cats/cat-stand.png" alt="" draggable="false" />
+                <img class="dad-cat-sprite dad-cat-paw" src="assets/art-v1/cats/cat-paw-raised.png" alt="" draggable="false" />
+                <img class="dad-cat-sprite dad-cat-innocent" src="assets/art-v1/cats/cat-sit.png" alt="" draggable="false" />
+                <img class="dad-cat-sprite dad-cat-walk" src="assets/art-v1/cats/cat-walk.png" alt="" draggable="false" />
+                <img class="dad-cat-sprite dad-cat-jump" src="assets/art-v1/cats/cat-pounce.png" alt="" draggable="false" />
+                <img class="dad-cat-sprite dad-cat-play" src="assets/art-v1/cats/cat-crouch.png" alt="" draggable="false" />
+              </div>
+              <img class="dad-sofa dad-sofa-front" src="assets/art-v1/props/sofa-front.png" alt="" draggable="false" />
+              <img class="dad-television" src="assets/art-v1/props/media-tv-side.png" alt="侧对玩家、屏幕朝向爸爸的电视，下面是藏着玩具的电视柜" draggable="false" />
+              <div class="dad-person" data-pose="watch">
+                <img class="dad-person-watch" src="assets/art-v1/characters/dad-bald-watch.png" alt="头顶光光、两侧留着头发的爸爸正专心看电视" draggable="false" />
+                <img class="dad-person-react" src="assets/art-v1/characters/dad-bald-react.png" alt="爸爸摸摸光头，疑惑地回望希小乐" draggable="false" />
+              </div>
+              <button class="dad-mouse" id="hiddenMouse" type="button" aria-label="拿出电视柜下露着尾巴的发条老鼠玩具，引开希小乐" disabled>
+                <span class="hit-area" aria-hidden="true"></span>
+                <span class="dad-mouse-crop"><img src="assets/art-v1/props/windup-mouse.png" alt="藏在电视柜下、带缝线和发条钥匙的布偶老鼠" draggable="false" /></span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Knead the white teddy, then freeze when the family comes to watch. -->
+          <section class="scene teddy-scene" data-scene="teddy" data-state="loading" aria-label="希小乐在猫床上踩白熊的脸，爸爸和小女孩围观后，它愣住停爪">
+            <div class="teddy-rig">
+              <div class="teddy-audience" role="img" aria-label="爸爸和小女孩在猫床侧边的地板上，好奇地围观希小乐" aria-hidden="true">
+                <img class="teddy-dad" src="assets/art-v1/characters/dad-crouch.png" alt="" draggable="false" />
+                <img class="teddy-girl" src="assets/art-v1/characters/girl-kneel.png" alt="" draggable="false" />
+              </div>
+              <div class="teddy-play">
+                <img class="teddy-bed teddy-bed-back" src="assets/art-v1/props/cat-bed-back.png" alt="" draggable="false" />
+                <button class="teddy-bear-target" id="teddy" type="button" aria-label="轻点白色泰迪熊，让它吱一声，引来爸爸和小女孩围观" disabled>
+                  <span class="hit-area" aria-hidden="true"></span>
+                  <img class="teddy-bear-body" src="assets/art-v1/props/white-teddy-body.png" alt="躺在猫咪小床上、脸正被希小乐踩着的白色泰迪熊" draggable="false" />
+                  <img class="teddy-bear-head" src="assets/art-v1/props/white-teddy-head.png" alt="" draggable="false" />
+                </button>
+                <div class="teddy-cat" data-pose="knead" aria-hidden="true">
+                  <div class="teddy-knead">
+                    <img class="teddy-cat-sprite teddy-cat-body" src="assets/art-v1/cats/knead-body.png" alt="" draggable="false" />
+                    <img class="teddy-cat-sprite teddy-paw-far" src="assets/art-v1/cats/knead-paw-far.png" alt="" draggable="false" />
+                    <img class="teddy-cat-sprite teddy-paw-near" src="assets/art-v1/cats/knead-paw-near.png" alt="" draggable="false" />
+                  </div>
+                  <img class="teddy-cat-sprite teddy-cat-frozen" src="assets/art-v1/cats/cat-knead.png" alt="" draggable="false" />
+                </div>
+                <img class="teddy-bed teddy-bed-front" src="assets/art-v1/props/cat-bed-front.png" alt="" draggable="false" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Final payoff and CTA. -->
+          <section class="scene" data-scene="ending">
+            <div class="sofa"></div>
+            <div class="hand"></div>
+            <button class="cat-button ending-cat" id="endingCat" type="button" aria-label="Pet the affectionate cow cat">
+              <span class="hit-area" aria-hidden="true"></span>
+              <span class="cat">
+                <span class="tail"></span>
+                <span class="cat-body"></span>
+                <span class="cat-head">
+                  <span class="eye left"></span>
+                  <span class="eye right"></span>
+                  <span class="nose"></span>
+                  <span class="mouth"></span>
+                </span>
+              </span>
+              <span class="meow-bubble">MEOW!</span>
+            </button>
+          </section>
+
+          <div class="sparkles" id="sparkles"></div>
         </div>
-      </header>
-
-      <!-- Scene 1: catch the cat and rescue the stolen yarn. -->
-      <section class="scene is-active" data-scene="closet">
-        <div class="wardrobe"></div>
-        <div class="fur-collar"></div>
-        <button class="yarn-mess" id="yarnMess" aria-label="Save the tangled yarn">
-          <span class="yarn-thread thread-one"></span>
-          <span class="yarn-thread thread-two"></span>
-          <span class="yarn-thread thread-three"></span>
-          <span class="yarn-ball floor-yarn" aria-hidden="true"></span>
-        </button>
-        <div class="cat-wrap closet-cat" id="closetCat" aria-label="Cat caught making a yarn mess">
-          <span class="cat">
-            <span class="tail"></span>
-            <span class="cat-body"></span>
-            <span class="cat-head">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="nose"></span>
-              <span class="mouth"></span>
-            </span>
-          </span>
-          <span class="meow-bubble">MEOW!</span>
+      </div>
+      <div class="ui-layer">
+        <header class="hud">
+          <div class="title" title="Moo Cat Mayhem" aria-label="奶牛猫大作战 / Moo Cat Mayhem">奶牛猫大作战</div>
+          <div class="hint" id="hint" role="status">沙发底下，好像有动静。</div>
+          <div class="progress" id="progress" aria-label="Scene progress">
+            <span class="dot is-active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </header>
+        <div class="caption" id="caption" role="status"></div>
+        <button class="cta" id="cta" type="button">从头再玩一次</button>
+        <div class="ambush-controls" id="ambushControls">
+          <label class="ambush-sound"><input type="checkbox" id="ambushSound" checked /><span>声音</span></label>
+          <button id="ambushReplay" type="button" disabled>逗逗它</button>
+          <button id="ambushNext" type="button" hidden>下一幕</button>
         </div>
-        <div class="caption">Yarn rescued!</div>
-      </section>
-
-      <!-- Scene 2: ring the electric mouse toy to save Dad's head. -->
-      <section class="scene" data-scene="dad">
-        <div class="tv" aria-hidden="true"></div>
-        <div class="dad"></div>
-        <div class="cabinet"></div>
-        <span class="danger-lines" aria-hidden="true"></span>
-        <span class="tap-mark"></span>
-        <div class="cat-wrap dad-cat" id="dadCat" aria-label="Mischievous cat on Dad's head">
-          <span class="cat">
-            <span class="tail"></span>
-            <span class="cat-body"></span>
-            <span class="cat-head">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="nose"></span>
-              <span class="mouth"></span>
-            </span>
-          </span>
+        <div class="ambush-controls yarn-controls" id="yarnControls" hidden>
+          <label class="ambush-sound"><input type="checkbox" id="yarnSound" checked /><span>声音</span></label>
+          <button id="yarnReplay" type="button" disabled>重新开始</button>
+          <button id="yarnNext" type="button" hidden>下一幕</button>
         </div>
-        <button class="toy" id="toy" aria-label="Ring the electric mouse toy">
-          <span class="mouse-ear"></span>
-          <span class="mouse-wheel"></span>
-          <span class="ring"></span>
-        </button>
-        <div class="caption">Dad is safe... for now.</div>
-      </section>
-
-      <!-- Scene 3: rescue the teddy from the cat's sleeping chair. -->
-      <section class="scene" data-scene="teddy">
-        <div class="chair"></div>
-        <button class="teddy" id="teddy" aria-label="Rescue the plush teddy bear">
-          <span class="teddy-ear left"></span>
-          <span class="teddy-ear right"></span>
-          <span class="teddy-face"></span>
-          <span class="teddy-arm left"></span>
-          <span class="teddy-arm right"></span>
-        </button>
-        <div class="cat-wrap chair-cat" id="chairCat" aria-label="Cat swatting the teddy bear">
-          <span class="cat">
-            <span class="tail"></span>
-            <span class="cat-body"></span>
-            <span class="swat-paw"></span>
-            <span class="cat-head">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="nose"></span>
-              <span class="mouth"></span>
-            </span>
-          </span>
+        <div class="ambush-controls dad-controls" id="dadControls" hidden>
+          <label class="ambush-sound"><input type="checkbox" id="dadSound" checked /><span>声音</span></label>
+          <button id="dadReplay" type="button" disabled>重新开始</button>
+          <button id="dadNext" type="button" hidden>下一幕</button>
         </div>
-        <div class="caption">Teddy rescued!</div>
-      </section>
-
-      <!-- Final payoff and CTA. -->
-      <section class="scene" data-scene="ending">
-        <div class="sofa"></div>
-        <div class="hand"></div>
-        <button class="cat-button ending-cat" id="endingCat" aria-label="Pet the affectionate cow cat">
-          <span class="cat">
-            <span class="tail"></span>
-            <span class="cat-body"></span>
-            <span class="cat-head">
-              <span class="eye left"></span>
-              <span class="eye right"></span>
-              <span class="nose"></span>
-              <span class="mouth"></span>
-            </span>
-          </span>
-          <span class="meow-bubble">MEOW!</span>
-        </button>
-        <div class="caption">He missed you too.</div>
-      </section>
-
-      <button class="cta" id="cta">Play More</button>
-      <div class="sparkles" id="sparkles"></div>
+        <div class="ambush-controls teddy-controls" id="teddyControls" hidden>
+          <label class="ambush-sound"><input type="checkbox" id="teddySound" checked /><span>声音</span></label>
+          <button id="teddyReplay" type="button" disabled>再玩一次</button>
+          <button id="teddyNext" type="button" hidden>下一幕</button>
+        </div>
+      </div>
     </div>
   </main>
+  <script src="viewport.js" defer></script>
+  <script src="ambush.js" defer></script>
+  <script src="yarn.js" defer></script>
+  <script src="dad.js" defer></script>
+  <script src="teddy.js" defer></script>
+  <script src="locales/zh.js" defer></script>
+  <script src="locales/en.js" defer></script>
+  <script src="locales/fr.js" defer></script>
+  <script src="i18n.js" defer></script>
+  <script src="stool.js" defer></script>
+  <script src="story.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>

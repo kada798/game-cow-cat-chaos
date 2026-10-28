@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>奶牛猫大作战 / Moo Cat Mayhem · 美术素材 v1</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #25332e; background: #f5f6f5; font: 15px/1.5 Arial, "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+    main { max-width: 1440px; margin: auto; padding: 26px; }
+    header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: baseline; border-bottom: 1px solid #cdd6d0; padding-bottom: 16px; }
+    h1 { margin: 0; font-size: 25px; } h2 { margin: 24px 0 12px; font-size: 19px; } p { margin: 0; color: #596b61; }
+    .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; padding: 14px 0; }
+    label { display: inline-flex; align-items: center; gap: 6px; } input { accent-color: #32836a; }
+    .scenes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    figure { margin: 0; min-width: 0; }
+    canvas.scene { display: block; width: 100%; aspect-ratio: 3/2; background: #e7ece9; }
+    figcaption { padding: 8px 0; font-size: 14px; }
+    .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+    .tile { position: relative; aspect-ratio: 1; overflow: hidden; background: repeating-conic-gradient(#e4e9e6 0% 25%, #f9faf9 0% 50%) 50% / 20px 20px; border: 1px solid #d4ddd7; border-radius: 4px; }
+    .tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .cats .tile::after { content: ""; position: absolute; left: 0; right: 0; top: 87.5%; border-top: 1px dashed #c65e62; pointer-events: none; }
+    .cats .tile::before { content: ""; position: absolute; left: 50%; top: calc(87.5% - 4px); width: 8px; height: 8px; z-index: 1; border: 1px solid #c65e62; border-radius: 50%; pointer-events: none; }
+    .props { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .props .tile { aspect-ratio: 4/3; }
+    .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 680px; gap: 20px; }
+    .people .tile { aspect-ratio: 3/4; }
+    .meta { display: block; color: #617066; font-size: 12px; overflow-wrap: anywhere; }
+    .background { width: 100%; display: block; max-height: 340px; object-fit: cover; }
+    a { color: #23674f; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .cats { grid-template-columns: repeat(4, minmax(0, 1fr)); } .scenes { grid-template-columns: 1fr; } .props { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (max-width: 540px) { main { padding: 16px; } .cats, .props { grid-template-columns: repeat(2, minmax(0, 1fr)); } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header><h1>奶牛猫大作战 · 美术素材 v1</h1><p>Moo Cat Mayhem · 希小乐 · 18 个猫姿态 · 分层家具与人物</p><a href="README.md">素材说明</a><a href="manifest.json">定位清单</a></header>
+    <div class="controls"><label><input id="foreground" type="checkbox" checked>前景遮挡层</label><label><input id="guides" type="checkbox">定位点</label><label><input id="teddyWitnesses" type="checkbox" checked>白熊场景围观</label></div>
+    <div class="scenes">
+      <figure><canvas class="scene" id="scene-dad" width="960" height="640"></canvas><figcaption>看电视 · 轻敲爸爸脑袋</figcaption></figure>
+      <figure><canvas class="scene" id="scene-wardrobe" width="960" height="640"></canvas><figcaption>衣柜 · 叼走毛领</figcaption></figure>
+      <figure><canvas class="scene" id="scene-ambush" width="960" height="640"></canvas><figcaption>沙发底下 · 探头埋伏</figcaption></figure>
+      <figure><canvas class="scene" id="scene-yarn" width="960" height="640"></canvas><figcaption>拯救毛线团 · 铃铛与羽毛引猫</figcaption></figure>
+      <figure><canvas class="scene" id="scene-teddy" width="960" height="640"></canvas><figcaption>白熊的脸 · 被围观后停爪</figcaption></figure>
+    </div>
+    <h2>小猫姿态 · 512 × 512 · 共同定位点 (256, 448)</h2><div class="cats" id="cats"></div>
+    <h2>家具与道具</h2><div class="props" id="props"></div>
+    <h2>人物 · 各自使用清单内的座面定位点</h2><div class="people" id="people"></div>
+    <h2>空房间背景</h2><img class="background" src="backgrounds/room.webp" alt="空房间背景">
+  </main>
+  <script src="manifest.js"></script>
+  <script>
+    const assets = window.ART_MANIFEST.assets;
+    const images = {};
+    const names = {
+      'cat-sit': '正坐', 'cat-stand': '侧站', 'cat-loaf': '清醒趴卧', 'cat-sleep': '闭眼揣手', 'cat-stretch': '仰躺伸展', 'cat-recline': '侧卧搭爪',
+      'cat-crouch': '低伏蓄力', 'cat-peek': '探头', 'cat-paw-raised': '抬爪', 'cat-carry-collar': '叼毛领', 'cat-walk': '行走', 'cat-drape': '垂爪搭靠背',
+      'sofa-back': '沙发后层', 'sofa-front': '沙发前挡板与扶手', 'wardrobe-back': '衣柜柜体', 'wardrobe-front': '衣柜门', 'television': '电视与低柜', 'fur-collar': '独立毛领',
+      'dad-watch': '旧爸爸看电视（保留）', 'dad-surprised': '旧爸爸回头（保留）', 'dad-bald-watch': '地中海爸爸看电视', 'dad-bald-react': '爸爸摸头回望', 'windup-mouse': '独立发条布偶老鼠', 'cat-pounce': '向前扑出', 'sock-foot': '穿袜子的脚',
+      'cat-under-sofa': '贴地潜伏', 'girl-watch': '小女孩看电视（保留素材）', 'girl-reading': '小女孩低头看书', 'media-tv': '正面电视与高柜（保留素材）', 'media-tv-side': '朝向爸爸的侧向电视与高柜', 'soccer-ball': '藏在书边的小足球',
+      'cat-yarn-play': '侧卧拨毛线', 'cat-yarn-tug': '收爪拉线', 'yarn-strands': '独立散线', 'yarn-tangle': '旧版整体毛线（未使用）', 'yarn-tidy': '独立小毛线球', 'feather-bell': '羽毛与铃铛逗猫棒',
+      'cat-knead': '踩白熊脸', 'cat-frozen': '停爪愣住', 'cat-bed-back': '猫床后层与床垫', 'cat-bed-front': '猫床前沿', 'white-teddy': '白色泰迪熊',
+      'white-teddy-body': '白熊身体', 'white-teddy-head': '白熊可压缩头部', 'dad-crouch': '爸爸蹲下围观', 'girl-kneel': '女孩跪坐围观'
+    };
+    function gallery(container, ids) {
+      const parent = document.getElementById(container);
+      for (const id of ids) {
+        const figure = document.createElement('figure');
+        const tile = document.createElement('a'); tile.className = 'tile'; tile.href = assets[id].file; tile.style.display = 'block';
+        const image = document.createElement('img'); image.src = assets[id].file; image.alt = names[id]; tile.append(image);
+        const caption = document.createElement('figcaption'); caption.textContent = names[id];
+        const meta = document.createElement('span'); meta.className = 'meta'; meta.textContent = assets[id].file.split('/').pop(); caption.append(meta);
+        figure.append(tile, caption); parent.append(figure);
+      }
+    }
+    gallery('cats', Object.keys(assets).filter(id => assets[id].headWidth && !assets[id].catPart));
+    gallery('props', ['sofa-back', 'sofa-front', 'wardrobe-back', 'wardrobe-front', 'television', 'media-tv', 'media-tv-side', 'fur-collar', 'sock-foot', 'soccer-ball', 'yarn-strands', 'yarn-tidy', 'feather-bell', 'windup-mouse', 'cat-bed-back', 'cat-bed-front', 'white-teddy', 'white-teddy-body', 'white-teddy-head']);
+    gallery('people', ['dad-bald-watch', 'dad-bald-react', 'dad-watch', 'dad-surprised', 'girl-watch', 'girl-reading', 'dad-crouch', 'girl-kneel']);
+    function draw(ctx, id, x, y, scale) {
+      ctx.drawImage(images[id], x, y, assets[id].width * scale, assets[id].height * scale);
+    }
+    function anchored(ctx, id, x, y, scale, anchor = assets[id].anchor) {
+      draw(ctx, id, x - anchor[0] * scale, y - anchor[1] * scale, scale);
+      if (document.getElementById('guides').checked) { ctx.strokeStyle = '#c54460'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x - 8, y); ctx.lineTo(x + 8, y); ctx.moveTo(x, y - 8); ctx.lineTo(x, y + 8); ctx.stroke(); }
+    }
+    function start(id) {
+      const ctx = document.getElementById(id).getContext('2d'); ctx.clearRect(0, 0, 960, 640);
+      const image = images.room, scale = Math.max(960 / image.width, 640 / image.height);
+      ctx.drawImage(image, (960 - image.width * scale) / 2, (640 - image.height * scale) / 2, image.width * scale, image.height * scale);
+      return ctx;
+    }
+    function render() {
+      const front = document.getElementById('foreground').checked;
+      let ctx = start('scene-dad');
+      ctx.save(); ctx.translate(260, -205); ctx.scale(1.08, 1.08);
+      draw(ctx, 'sofa-back', 10, 385, 560 / 1024);
+      if (front) draw(ctx, 'sofa-front', 10, 385, 560 / 1024);
+      draw(ctx, 'media-tv-side', -160, 390, 150 / 512);
+      draw(ctx, 'dad-bald-watch', 102, 390, 246 / 768);
+      ctx.save(); ctx.translate(341, 483); ctx.rotate(-5 * Math.PI / 180);
+      anchored(ctx, 'cat-paw-raised', 0, 0, 160 / 512);
+      ctx.restore();
+      ctx.save(); ctx.beginPath(); ctx.rect(-148, 648, 32.4, 45); ctx.clip();
+      draw(ctx, 'windup-mouse', -148, 648, 90 / 512);
+      ctx.restore(); ctx.restore();
+      ctx = start('scene-wardrobe');
+      draw(ctx, 'wardrobe-back', 380, 50, 0.55);
+      anchored(ctx, 'cat-carry-collar', 489, 569, 0.60);
+      if (front) draw(ctx, 'wardrobe-front', 380, 50, 0.55);
+      ctx = start('scene-ambush');
+      ctx.save(); ctx.translate(304.5, -129.6); ctx.scale(0.9, 0.9);
+      draw(ctx, 'sofa-back', -342.6, 70, 1.05);
+      anchored(ctx, 'cat-under-sofa', 155, 660, 0.5);
+      if (front) draw(ctx, 'sofa-front', -342.6, 70, 1.05);
+      anchored(ctx, 'soccer-ball', 339, 434, (112 * 0.5 * 2 / 3) / assets['soccer-ball'].ballDiameter, [256, 256]);
+      draw(ctx, 'girl-reading', 89, 227, 300 / 768);
+      ctx.restore();
+      ctx = start('scene-yarn');
+      draw(ctx, 'sofa-complete', -60, 20, 0.90);
+      draw(ctx, 'yarn-strands', 200, 330, 0.60);
+      anchored(ctx, 'cat-yarn-play', 650, 565, 0.80);
+      anchored(ctx, 'yarn-tidy', 730, 615, 0.19);
+      ctx.save(); ctx.beginPath(); ctx.rect(0, 240, 30, 60); ctx.clip();
+      draw(ctx, 'feather-bell', -180, 200, 0.28);
+      ctx.restore();
+      ctx = start('scene-teddy');
+      const witnesses = document.getElementById('teddyWitnesses').checked;
+      ctx.save(); ctx.translate(304.5, -129.6); ctx.scale(0.9, 0.9);
+      if (witnesses) {
+        draw(ctx, 'dad-crouch', -145, 405, 200 / 768);
+        draw(ctx, 'girl-kneel', 385, 500, 150 / 768);
+      }
+      draw(ctx, 'cat-bed-back', 8, 512, 370 / 1024);
+      draw(ctx, 'white-teddy', 20, 552, 250 / 768);
+      anchored(ctx, 'cat-knead', 210, 662, 360 / 512);
+      if (front) draw(ctx, 'cat-bed-front', 8, 512, 370 / 1024);
+      ctx.restore();
+      window.ART_PREVIEW_READY = true;
+    }
+    Promise.all(Object.entries(assets).map(([id, asset]) => new Promise((resolve, reject) => {
+      const image = new Image(); image.onload = () => { images[id] = image; resolve(); }; image.onerror = () => reject(new Error(asset.file)); image.src = asset.file;
+    }))).then(render).catch(error => { document.body.dataset.error = error.message; console.error(error); });
+    document.getElementById('foreground').addEventListener('change', render);
+    document.getElementById('guides').addEventListener('change', render);
+    document.getElementById('teddyWitnesses').addEventListener('change', render);
+  </script>
+</body>
+</html>

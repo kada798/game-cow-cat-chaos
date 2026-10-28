@@ -1,0 +1,1217 @@
+{
+  "version": 1,
+  "style": "charcoal-and-colored-pencil",
+  "coordinates": "pixels from the top-left of each exported canvas",
+  "catCanvas": {
+    "width": 512,
+    "height": 512,
+    "anchor": [
+      256,
+      448
+    ],
+    "headWidth": 112
+  },
+  "assets": {
+    "cat-sit": {
+      "file": "cats/cat-sit.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        158,
+        161,
+        321,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 190,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-stand": {
+      "file": "cats/cat-stand.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        47,
+        110,
+        417,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 163,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-loaf": {
+      "file": "cats/cat-loaf.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        130,
+        255,
+        379,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 184,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-sleep": {
+      "file": "cats/cat-sleep.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        159,
+        298,
+        359,
+        449
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 210,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-stretch": {
+      "file": "cats/cat-stretch.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        51,
+        176,
+        464,
+        447
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 163,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-recline": {
+      "file": "cats/cat-recline.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        86,
+        206,
+        407,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 185,
+      "source": "source/cats-rest.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-crouch": {
+      "file": "cats/cat-crouch.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        136,
+        284,
+        398,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 196,
+      "source": "source/cats-actions.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-peek": {
+      "file": "cats/cat-peek.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        194,
+        355,
+        320,
+        447
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 235,
+      "source": "source/cats-actions.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-paw-raised": {
+      "file": "cats/cat-paw-raised.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        61,
+        192,
+        362,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 182,
+      "source": "source/cats-actions.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-carry-collar": {
+      "file": "cats/cat-carry-collar.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        36,
+        139,
+        464,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 130,
+      "source": "source/cats-actions.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-walk": {
+      "file": "cats/cat-walk.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        73,
+        215,
+        440,
+        449
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 145,
+      "source": "source/cats-actions.png",
+      "anchorKind": "ground-contact"
+    },
+    "cat-drape": {
+      "file": "cats/cat-drape.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        138,
+        189,
+        459,
+        449
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 155,
+      "source": "source/cats-actions.png",
+      "anchorKind": "dangling-paw-baseline",
+      "surfaceAnchor": [
+        296,
+        322
+      ]
+    },
+    "cat-bed-back": {
+      "file": "props/cat-bed-back.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        55,
+        155,
+        967,
+        496
+      ],
+      "group": "cat-bed",
+      "z": 10,
+      "anchor": [
+        512,
+        576
+      ],
+      "mattressAnchor": [
+        517,
+        425
+      ],
+      "source": "source/cat-bed.png"
+    },
+    "cat-bed-front": {
+      "file": "props/cat-bed-front.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        55,
+        327,
+        969,
+        576
+      ],
+      "group": "cat-bed",
+      "z": 30,
+      "anchor": [
+        512,
+        576
+      ],
+      "mattressAnchor": [
+        517,
+        425
+      ],
+      "source": "source/cat-bed.png"
+    },
+    "cat-bed-complete": {
+      "file": "props/cat-bed-complete.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        55,
+        155,
+        969,
+        576
+      ],
+      "previewOnly": true,
+      "anchor": [
+        512,
+        576
+      ],
+      "mattressAnchor": [
+        517,
+        425
+      ],
+      "source": "source/cat-bed.png"
+    },
+    "white-teddy": {
+      "file": "props/white-teddy.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        81,
+        42,
+        687,
+        448
+      ],
+      "anchor": [
+        384,
+        448
+      ],
+      "faceAnchor": [
+        237,
+        192
+      ],
+      "source": "source/white-teddy.png"
+    },
+    "white-teddy-body": {
+      "file": "props/white-teddy-body.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        81,
+        42,
+        687,
+        448
+      ],
+      "group": "white-teddy",
+      "anchor": [
+        384,
+        448
+      ],
+      "faceAnchor": [
+        241,
+        179
+      ],
+      "source": "source/white-teddy.png"
+    },
+    "white-teddy-head": {
+      "file": "props/white-teddy-head.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        105,
+        43,
+        378,
+        317
+      ],
+      "group": "white-teddy",
+      "anchor": [
+        384,
+        448
+      ],
+      "faceAnchor": [
+        241,
+        179
+      ],
+      "source": "source/white-teddy.png"
+    },
+    "dad-crouch": {
+      "file": "characters/dad-crouch.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        60,
+        50,
+        707,
+        960
+      ],
+      "anchor": [
+        384,
+        960
+      ],
+      "anchorKind": "floor-contact",
+      "source": "source/dad-crouch.png"
+    },
+    "girl-kneel": {
+      "file": "characters/girl-kneel.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        71,
+        48,
+        697,
+        960
+      ],
+      "anchor": [
+        384,
+        960
+      ],
+      "anchorKind": "floor-contact",
+      "source": "source/girl-kneel.png"
+    },
+    "cat-knead": {
+      "file": "cats/cat-knead.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        41,
+        153,
+        386,
+        454
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 400,
+      "source": "source/cat-knead.png",
+      "anchorKind": "registered-knead-support"
+    },
+    "knead-body": {
+      "file": "cats/knead-body.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        56,
+        153,
+        386,
+        454
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 400,
+      "source": "source/cat-knead.png",
+      "anchorKind": "registered-knead-support",
+      "group": "cat-knead",
+      "catPart": true
+    },
+    "knead-paw-far": {
+      "file": "cats/knead-paw-far.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        41,
+        308,
+        127,
+        352
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 400,
+      "source": "source/cat-knead.png",
+      "anchorKind": "registered-knead-support",
+      "group": "cat-knead",
+      "catPart": true
+    },
+    "knead-paw-near": {
+      "file": "cats/knead-paw-near.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        81,
+        342,
+        178,
+        387
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 400,
+      "source": "source/cat-knead.png",
+      "anchorKind": "registered-knead-support",
+      "group": "cat-knead",
+      "catPart": true
+    },
+    "cat-frozen": {
+      "file": "cats/cat-frozen.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        52,
+        153,
+        386,
+        455
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 400,
+      "source": "source/cat-frozen.png",
+      "anchorKind": "registered-knead-support"
+    },
+    "sofa-back": {
+      "file": "props/sofa-back.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        61,
+        162,
+        955,
+        447
+      ],
+      "group": "sofa",
+      "z": 10,
+      "anchor": [
+        512,
+        576
+      ],
+      "seatAnchor": [
+        519,
+        384
+      ],
+      "perchAnchor": [
+        519,
+        168
+      ],
+      "underGapAnchor": [
+        519,
+        548
+      ]
+    },
+    "sofa-front": {
+      "file": "props/sofa-front.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        61,
+        260,
+        964,
+        577
+      ],
+      "group": "sofa",
+      "z": 30,
+      "anchor": [
+        512,
+        576
+      ],
+      "seatAnchor": [
+        519,
+        384
+      ],
+      "perchAnchor": [
+        519,
+        168
+      ],
+      "underGapAnchor": [
+        519,
+        548
+      ]
+    },
+    "sofa-complete": {
+      "file": "props/sofa-complete.png",
+      "width": 1024,
+      "height": 640,
+      "bounds": [
+        61,
+        162,
+        964,
+        577
+      ],
+      "previewOnly": true,
+      "anchor": [
+        512,
+        576
+      ],
+      "seatAnchor": [
+        519,
+        384
+      ],
+      "perchAnchor": [
+        519,
+        168
+      ],
+      "underGapAnchor": [
+        519,
+        548
+      ]
+    },
+    "wardrobe-back": {
+      "file": "props/wardrobe-back.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        263,
+        302,
+        706,
+        929
+      ],
+      "group": "wardrobe",
+      "z": 10,
+      "anchor": [
+        384,
+        928
+      ],
+      "hingeAnchor": [
+        274,
+        598
+      ],
+      "shelfAnchor": [
+        453,
+        864
+      ]
+    },
+    "wardrobe-front": {
+      "file": "props/wardrobe-front.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        64,
+        273,
+        277,
+        918
+      ],
+      "group": "wardrobe",
+      "z": 30,
+      "anchor": [
+        384,
+        928
+      ],
+      "hingeAnchor": [
+        274,
+        598
+      ],
+      "shelfAnchor": [
+        453,
+        864
+      ]
+    },
+    "wardrobe-complete": {
+      "file": "props/wardrobe-complete.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        64,
+        273,
+        706,
+        929
+      ],
+      "previewOnly": true,
+      "anchor": [
+        384,
+        928
+      ],
+      "hingeAnchor": [
+        274,
+        598
+      ],
+      "shelfAnchor": [
+        453,
+        864
+      ]
+    },
+    "television": {
+      "file": "props/television.png",
+      "width": 1024,
+      "height": 768,
+      "bounds": [
+        76,
+        80,
+        952,
+        704
+      ],
+      "anchor": [
+        512,
+        704
+      ],
+      "screenCenter": [
+        516,
+        268
+      ]
+    },
+    "fur-collar": {
+      "file": "props/fur-collar.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        62,
+        60,
+        451,
+        447
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "gripAnchor": [
+        240,
+        70
+      ]
+    },
+    "dad-watch": {
+      "file": "characters/dad-watch.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        44,
+        70,
+        710,
+        908
+      ],
+      "anchor": [
+        600,
+        640
+      ],
+      "anchorKind": "seat-contact",
+      "headAnchor": [
+        524,
+        83
+      ]
+    },
+    "dad-surprised": {
+      "file": "characters/dad-surprised.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        51,
+        64,
+        702,
+        907
+      ],
+      "anchor": [
+        600,
+        640
+      ],
+      "anchorKind": "seat-contact",
+      "headAnchor": [
+        513,
+        82
+      ]
+    },
+    "dad-bald-watch": {
+      "file": "characters/dad-bald-watch.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        46,
+        110,
+        728,
+        937
+      ],
+      "anchor": [
+        600,
+        640
+      ],
+      "headAnchor": [
+        551,
+        115
+      ],
+      "anchorKind": "seat-contact",
+      "source": "source/dad-bald-watch.png"
+    },
+    "dad-bald-react": {
+      "file": "characters/dad-bald-react.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        45,
+        113,
+        761,
+        953
+      ],
+      "anchor": [
+        600,
+        640
+      ],
+      "headAnchor": [
+        551,
+        115
+      ],
+      "anchorKind": "seat-contact",
+      "source": "source/dad-bald-react.png"
+    },
+    "windup-mouse": {
+      "file": "props/windup-mouse.png",
+      "width": 512,
+      "height": 256,
+      "bounds": [
+        23,
+        82,
+        489,
+        224
+      ],
+      "anchor": [
+        365,
+        224
+      ],
+      "anchorKind": "body-ground-contact",
+      "source": "source/windup-mouse.png"
+    },
+    "sock-foot": {
+      "file": "props/sock-foot.png",
+      "width": 256,
+      "height": 384,
+      "bounds": [
+        20,
+        92,
+        236,
+        341
+      ],
+      "anchor": [
+        86,
+        341
+      ],
+      "anchorKind": "toe-contact"
+    },
+    "cat-pounce": {
+      "file": "cats/cat-pounce.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        58,
+        134,
+        372,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "anchorKind": "ground-projection",
+      "source": "source/ambush.png"
+    },
+    "cat-under-sofa": {
+      "file": "cats/cat-under-sofa.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        186,
+        354,
+        492,
+        448
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "headWidth": 112,
+      "sourceHeadWidth": 550,
+      "anchorKind": "chin-ground-contact",
+      "source": "source/cat-under-sofa.png"
+    },
+    "girl-watch": {
+      "file": "characters/girl-watch.png",
+      "width": 768,
+      "height": 1152,
+      "bounds": [
+        26,
+        20,
+        755,
+        1125
+      ],
+      "anchor": [
+        540,
+        739
+      ],
+      "anchorKind": "seat-contact",
+      "footAnchor": [
+        525,
+        1118
+      ],
+      "gaze": "left",
+      "source": "source/girl-watch.png"
+    },
+    "girl-reading": {
+      "file": "characters/girl-reading.png",
+      "width": 768,
+      "height": 1152,
+      "bounds": [
+        179,
+        30,
+        753,
+        1142
+      ],
+      "anchor": [
+        540,
+        739
+      ],
+      "anchorKind": "seat-contact",
+      "footAnchor": [
+        533,
+        1133
+      ],
+      "bookAnchor": [
+        430,
+        565
+      ],
+      "gaze": "down",
+      "source": "source/girl-reading.png"
+    },
+    "soccer-ball": {
+      "file": "props/soccer-ball.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        64,
+        66,
+        448,
+        446
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "center": [
+        256,
+        256
+      ],
+      "ballDiameter": 384,
+      "source": "source/soccer-ball.png"
+    },
+    "media-tv": {
+      "file": "props/media-tv.png",
+      "width": 768,
+      "height": 1024,
+      "bounds": [
+        40,
+        33,
+        731,
+        985
+      ],
+      "anchor": [
+        384,
+        984
+      ],
+      "anchorKind": "floor-contact",
+      "source": "source/media-tv.png"
+    },
+    "media-tv-side": {
+      "file": "props/media-tv-side.png",
+      "width": 512,
+      "height": 1024,
+      "bounds": [
+        95,
+        47,
+        417,
+        960
+      ],
+      "anchor": [
+        256,
+        960
+      ],
+      "anchorKind": "floor-contact",
+      "screenFaces": "right",
+      "view": "left-side",
+      "source": "source/media-tv-side.png"
+    },
+    "cat-yarn-play": {
+      "file": "cats/cat-yarn-play.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        159,
+        284,
+        463,
+        449
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "anchorKind": "ground-contact",
+      "headWidth": 112,
+      "source": "source/cat-yarn-play.png"
+    },
+    "cat-yarn-tug": {
+      "file": "cats/cat-yarn-tug.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        159,
+        284,
+        463,
+        432
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "anchorKind": "registered-to-yarn-play",
+      "headWidth": 112,
+      "source": "source/cat-yarn-tug.png"
+    },
+    "yarn-strands": {
+      "file": "props/yarn-strands.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        13,
+        73,
+        760,
+        464
+      ],
+      "source": "source/yarn-strands.png"
+    },
+    "yarn-tangle": {
+      "file": "props/yarn-tangle.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        18,
+        64,
+        751,
+        462
+      ],
+      "anchor": [
+        625,
+        330
+      ],
+      "anchorKind": "ball-ground-contact",
+      "source": "source/yarn-tangle.png"
+    },
+    "feather-bell": {
+      "file": "props/feather-bell.png",
+      "width": 768,
+      "height": 512,
+      "bounds": [
+        30,
+        38,
+        758,
+        473
+      ],
+      "anchor": [
+        45,
+        475
+      ],
+      "bellAnchor": [
+        625,
+        145
+      ],
+      "anchorKind": "handle-end",
+      "source": "source/feather-bell.png"
+    },
+    "yarn-tidy": {
+      "file": "props/yarn-tidy.png",
+      "width": 512,
+      "height": 512,
+      "bounds": [
+        68,
+        51,
+        445,
+        449
+      ],
+      "anchor": [
+        256,
+        448
+      ],
+      "anchorKind": "ball-ground-contact",
+      "ballDiameter": 376,
+      "source": "source/yarn-tidy.png"
+    },
+    "room": {
+      "file": "backgrounds/room.png",
+      "width": 1672,
+      "height": 941,
+      "bounds": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "opaque": true,
+      "fit": "cover",
+      "position": [
+        0.5,
+        0.5
+      ],
+      "webp": "backgrounds/room.webp"
+    }
+  },
+  "layerGroups": {
+    "cat-bed": {
+      "layers": [
+        "cat-bed-back",
+        "cat-bed-front"
+      ],
+      "preview": "cat-bed-complete",
+      "actorZ": 20,
+      "registration": "identical canvas and anchor; do not trim layers individually",
+      "maxAlphaDifference": 0,
+      "maxColorDifference": 1
+    },
+    "white-teddy": {
+      "layers": [
+        "white-teddy-body",
+        "white-teddy-head"
+      ],
+      "preview": "white-teddy",
+      "registration": "shared canvas; head compression follows paw pressure"
+    },
+    "cat-knead": {
+      "layers": [
+        "knead-body",
+        "knead-paw-far",
+        "knead-paw-near"
+      ],
+      "preview": "cat-knead",
+      "registration": "shared 512 canvas and anchor; only paw layers move during kneading"
+    },
+    "sofa": {
+      "layers": [
+        "sofa-back",
+        "sofa-front"
+      ],
+      "preview": "sofa-complete",
+      "actorZ": 20,
+      "registration": "identical canvas and anchor; do not trim layers individually",
+      "maxAlphaDifference": 0,
+      "maxColorDifference": 1
+    },
+    "wardrobe": {
+      "layers": [
+        "wardrobe-back",
+        "wardrobe-front"
+      ],
+      "preview": "wardrobe-complete",
+      "actorZ": 20,
+      "registration": "identical canvas and anchor; do not trim layers individually",
+      "maxAlphaDifference": 0,
+      "maxColorDifference": 1,
+      "note": "Front is the open door; animate about hingeAnchor. Do not mirror the entire group."
+    }
+  },
+  "sources": [
+    "source/cats-rest.png",
+    "source/cats-actions.png",
+    "source/furniture.png",
+    "source/dad.png",
+    "source/room.png",
+    "source/cat-bed.png",
+    "source/white-teddy.png",
+    "source/dad-crouch.png",
+    "source/girl-kneel.png",
+    "source/cat-knead.png",
+    "source/cat-frozen.png",
+    "source/dad-bald-watch.png",
+    "source/dad-bald-react.png",
+    "source/windup-mouse.png",
+    "source/ambush.png",
+    "source/cat-under-sofa.png",
+    "source/girl-watch.png",
+    "source/girl-reading.png",
+    "source/soccer-ball.png",
+    "source/media-tv.png",
+    "source/media-tv-side.png",
+    "source/cat-yarn-tug.png",
+    "source/yarn-strands.png",
+    "source/cat-yarn-play.png",
+    "source/yarn-tangle.png",
+    "source/feather-bell.png",
+    "source/yarn-tidy.png"
+  ],
+  "compositing": {
+    "headTap": [
+      "room",
+      "sofa-back",
+      "cat-stand",
+      "sofa-front",
+      "media-tv-side",
+      "dad-bald-watch",
+      "cat-paw-raised",
+      "windup-mouse"
+    ],
+    "wardrobe": [
+      "room",
+      "wardrobe-back",
+      "cat-carry-collar",
+      "wardrobe-front"
+    ],
+    "ambush": [
+      "room",
+      "sofa-back",
+      "cat-under-sofa",
+      "sofa-front",
+      "soccer-ball",
+      "girl-reading"
+    ],
+    "yarn": [
+      "room",
+      "sofa-complete",
+      "yarn-strands",
+      "yarn-tidy",
+      "cat-yarn-play",
+      "cat-yarn-tug",
+      "feather-bell"
+    ],
+    "teddy": [
+      "room",
+      "dad-crouch",
+      "girl-kneel",
+      "cat-bed-back",
+      "white-teddy-body",
+      "white-teddy-head",
+      "knead-body",
+      "knead-paw-far",
+      "knead-paw-near",
+      "cat-bed-front"
+    ],
+    "note": "Sequences describe back-to-front drawing order; scale cat head to fit the sofa gap before positioning."
+  }
+}

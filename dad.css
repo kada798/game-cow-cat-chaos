@@ -1,0 +1,34 @@
+.dad-scene {
+  --dad-cat-size: 160px;
+  --dad-tv-left: clamp(-160px, calc(var(--scene-visible-left, 0px) + 12px / var(--stage-scale, 1)), 0px);
+  --dad-tv-width: clamp(110px, calc(110px - var(--scene-visible-left, 0px) * 0.12), 150px);
+}
+.dad-rig { opacity: 0; transition: opacity 220ms ease-out; }
+.dad-scene.is-ready .dad-rig { opacity: 1; }
+.dad-rig img { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+.dad-sofa { position: absolute; left: 10px; top: 385px; width: 560px; height: 350px; }
+.dad-sofa-back { z-index: 10; }
+.dad-sofa-front { z-index: 30; }
+.dad-television { position: absolute; z-index: 35; left: var(--dad-tv-left); top: calc(690px - var(--dad-tv-width) * 2); width: var(--dad-tv-width); height: calc(var(--dad-tv-width) * 2); }
+.dad-person { position: absolute; z-index: 40; left: 102px; top: 390px; width: 246px; height: 328px; transform-origin: 78.125% 62.5%; }
+.dad-person img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.dad-person[data-pose="watch"] .dad-person-watch,
+.dad-person[data-pose="react"] .dad-person-react { opacity: 1; }
+.dad-perched-cat { position: absolute; z-index: 20; left: 339px; top: 485px; width: 0; height: 0; transform-origin: 0 0; pointer-events: none; }
+.dad-perched-cat[data-pose="paw"] { z-index: 45; }
+.dad-cat-sprite { position: absolute; left: calc(var(--dad-cat-size) * -0.5); top: calc(var(--dad-cat-size) * -0.875); width: var(--dad-cat-size); height: var(--dad-cat-size); opacity: 0; }
+.dad-perched-cat[data-pose="stand"] .dad-cat-stand,
+.dad-perched-cat[data-pose="paw"] .dad-cat-paw,
+.dad-perched-cat[data-pose="innocent"] .dad-cat-innocent,
+.dad-perched-cat[data-pose="walk"] .dad-cat-walk,
+.dad-perched-cat[data-pose="jump"] .dad-cat-jump,
+.dad-perched-cat[data-pose="play"] .dad-cat-play { opacity: 1; }
+.dad-mouse { position: absolute; z-index: 46; left: calc(var(--dad-tv-left) + 12px); top: 648px; width: 90px; height: 45px; background: transparent; border: 0; padding: 0; border-radius: 4px; }
+.dad-mouse-crop { position: absolute; inset: 0; clip-path: inset(0 64% 0 0); }
+.dad-mouse img { display: block; width: 90px; height: 45px; }
+.dad-scene[data-toy="revealed"] .dad-mouse-crop,
+.dad-scene[data-toy="active"] .dad-mouse-crop { clip-path: inset(0); }
+.dad-mouse:disabled { cursor: default; }
+.dad-mouse:focus-visible { outline: 3px solid #3e7150; outline-offset: 4px; }
+.dad-scene.is-suspended * { animation: none !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .dad-rig { transition-duration: 0ms; } }
